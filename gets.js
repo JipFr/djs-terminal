@@ -32,7 +32,7 @@ function get_message_text(message, bot, djs_state) {
 	}
 	
 	let date = new Date(message.createdAt);
-	let time = `${date.getHours().toString().padStart(2, 0)}:${date.getMinutes().toString().padStart(2, 0)}`
+	let time = `${date.getHours().toString().padStart(2, 0)}:${date.getMinutes().toString().padStart(2, 0)}:${date.getSeconds().toString().padStart(2, 0)}`
 	let divider = "|".dim.white;
 
 	let result = `${`#${djs_state.channel.name}`.bold.yellow} ${divider} ${time.dim.white} ${divider} ${`${name}:`.padEnd(20, " ")} ${text}`;
@@ -62,7 +62,7 @@ function get_content(message) {
 
 	if(message.attachments.size > 0) {
 		let urls = message.attachments.array().map(a => a.url);
-		content += "Attachments: " + urls.join(", ");
+		content += "Attachments: ".bold.yellow + urls.join(", ").brightWhite;
 	}
 
 	return content;

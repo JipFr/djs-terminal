@@ -5,7 +5,7 @@ function log_guild(djs_state) {
 	console.log("Selected guild:".bold.yellow, djs_state.guild.name);
 }
 function log_channel(bot, djs_state) {
-
+	console.clear();
 	console.log("Current channel:".bold.yellow, djs_state.guild.name, "—".bold.yellow, djs_state.channel.name);
 	djs_state.channel.fetchMessages({limit: 100}).then(d => {
 		let messages = d.array().reverse().map(msg => get_message_text(msg, bot, djs_state));
