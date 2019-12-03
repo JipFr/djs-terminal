@@ -1,0 +1,9 @@
+{
+	"override_user_colors": {
+		"159704489970892800": "brightWhite",
+		"645958790197411841": "brightGreen",
+		"310101504680001536": "underline",
+		"348927463277199380": "magenta"
+	},
+	"possible_colors": ["green", "magenta", "white", "brightRed", "brightGreen", "brightYellow", "brightBlue", "brightMagenta", "brightCyan"]
+}
