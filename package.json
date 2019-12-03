@@ -10,9 +10,12 @@
   "license": "ISC",
   "dependencies": {
     "colors": "^1.4.0",
+    "console-png": "^1.2.1",
     "discord.js": "^11.5.1",
     "dotenv": "^8.2.0",
+    "got": "^10.0.1",
     "inquirer": "^7.0.0",
-    "serverline": "^1.4.2"
+    "serverline": "^1.4.2",
+    "terminal-image": "^0.2.0"
   }
 }

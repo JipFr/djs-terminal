@@ -1,6 +1,8 @@
 
+const got = require("got");
 const { override_user_colors, possible_colors } = require("./config.json");
 let mapped_user_colors = {}
+require("console-png").attachTo(console);
 
 const get_guilds = bot => bot.guilds.array().sort((a, b) => a.position - b.position);
 const get_channels = (bot, djs_state) => djs_state.guild.channels.array()/*.filter(channel => channel.type == "text")*/.sort((a, b) => a.position - b.position);
@@ -59,7 +61,8 @@ function get_content(message) {
 	}).join(" ");
 
 	if(message.attachments.size > 0) {
-		content += "Attachments: " + message.attachments.array().map(a => a.url);
+		let urls = message.attachments.array().map(a => a.url);
+		content += "Attachments: " + urls.join(", ");
 	}
 
 	return content;

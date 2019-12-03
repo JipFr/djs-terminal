@@ -7,7 +7,7 @@ function log_guild(djs_state) {
 function log_channel(bot, djs_state) {
 
 	console.log("Current channel:".bold.yellow, djs_state.guild.name, "—".bold.yellow, djs_state.channel.name);
-	djs_state.channel.fetchMessages({limit: 20}).then(d => {
+	djs_state.channel.fetchMessages({limit: 100}).then(d => {
 		let messages = d.array().reverse().map(msg => get_message_text(msg, bot, djs_state));
 		messages.forEach(txt => console.log(txt));
 		console.log("—".repeat(90).bold.green);
