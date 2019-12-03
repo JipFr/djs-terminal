@@ -11,8 +11,7 @@ const { log_channel, log_guild } = require("./logs");
 require("colors");
 require("dotenv").config();
 
-bot.login(process.env.token);
-
+bot.login(process.env.TOKEN);
 
 function prompt() {
 	ask("").then(handle_input);
@@ -43,7 +42,7 @@ bot.on("message", message => {
 });
 
 async function handle_input(msg) {
-	if(msg.startsWith(commands.switch_server)) {
+	if(msg == commands.switch_server) {
 		// Switch server code...
 
 		djs_state.guild = await prompt_guild(bot);
@@ -52,13 +51,23 @@ async function handle_input(msg) {
 
 		log_channel(bot, djs_state);
 		prompt();
-	} else if(msg.startsWith(commands.switch_channel)) {
+	} else if(msg == commands.switch_channel) {
 		// Switch channel code...
 
 		djs_state.channel = await prompt_channel(bot, djs_state);
 
 		log_channel(bot, djs_state);
 		prompt();
+	} else if(msg == commands.delete_message) {
+		// Delete latest message
+		djs_state.channel.fetchMessages({limit: 5}).then(messages => {
+			messages = messages.array();
+			let message = messages.find(msg => msg.author.id == bot.user.id);
+			if(message) message.delete(0);
+			console.log("Deleted message:".bold.yellow, message.content);
+			prompt();
+		});
+
 	} else {
 		// Send message
 		djs_state.channel.send(msg).then(prompt);

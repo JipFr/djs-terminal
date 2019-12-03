@@ -28,7 +28,8 @@ function get_message_text(message, bot, djs_state) {
 	if(nick && message.author.username !== nick) {
 		name += ` (${nick})`;
 	}
-	let result = (("#" + djs_state.channel.name).bold.yellow + " | " + (name + ": ").padEnd(15, " ") + text);
+	
+	let result = `${`#${djs_state.channel.name}`.bold.yellow} | ${`${name}:`.padEnd(20, " ")} ${text}`;
 	return result;
 }
 function get_content(message) {

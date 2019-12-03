@@ -1,4 +1,5 @@
 {
 	"switch_server": "sg",
-	"switch_channel": "sc"
+	"switch_channel": "sc",
+	"delete_message": "del"
 }
