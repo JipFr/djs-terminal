@@ -1,6 +1,6 @@
 const { get_guilds } = require("./gets.js");
 const { ask } = require("./ask");
-const { log_channels, log_guild } = require("./logs")
+const { log_channels, log_guild } = require("./logs");
 
 const prompt_guild = async bot => {
 	let guild_names = bot.guilds.array().map(guild => guild.name);
