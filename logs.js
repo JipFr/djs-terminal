@@ -5,13 +5,14 @@ function log_guild(djs_state) {
 	console.log("Selected guild:".bold.yellow, djs_state.guild.name);
 }
 function log_channel(bot, djs_state) {
-	console.log(djs_state.guild);
+
 	console.log("Current channel:".bold.yellow, djs_state.guild.name, "—".bold.yellow, djs_state.channel.name);
 	djs_state.channel.fetchMessages({limit: 20}).then(d => {
 		let messages = d.array().reverse().map(msg => get_message_text(msg, bot, djs_state));
 		messages.forEach(txt => console.log(txt));
 		console.log("—".repeat(90).bold.green);
 	});
+
 }
 function log_channels(bot, djs_state) {
 	mapped_channels = {}
@@ -31,7 +32,7 @@ function log_channels(bot, djs_state) {
 		console.log(">".bold.yellow, category.name);
 		category.channels.forEach(channel => {
 			mapped_channels[index] = channel;
-			console.log(index.toString().padStart(5, " ").bold.green, channel.name, channel.id.bold.gray);
+			console.log(index.toString().padStart(5, " ").bold.green, channel.name.padEnd(48, " "), channel.id.dim.white);
 			index++
 		});
 	});

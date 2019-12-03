@@ -29,7 +29,11 @@ function get_message_text(message, bot, djs_state) {
 		name += ` (${nick})`;
 	}
 	
-	let result = `${`#${djs_state.channel.name}`.bold.yellow} | ${`${name}:`.padEnd(20, " ")} ${text}`;
+	let date = new Date(message.createdAt);
+	let time = `${date.getHours().toString().padStart(2, 0)}:${date.getMinutes().toString().padStart(2, 0)}`
+	let divider = "|".dim.white;
+
+	let result = `${`#${djs_state.channel.name}`.bold.yellow} ${divider} ${time.dim.white} ${divider} ${`${name}:`.padEnd(20, " ")} ${text}`;
 	return result;
 }
 function get_content(message) {

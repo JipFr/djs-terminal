@@ -37,6 +37,6 @@ function log_guilds(bot) {
 	let guilds = get_guilds(bot);
 	guilds.forEach((guild, index) => {
 		mapped_guilds[index] = guild;
-		console.log(index.toString().padStart(3, " ").bold.green, guild.name.padEnd(50, " "), `(${(guild.memberCount + " members")})`.dim.white);
+		console.log(index.toString().padStart(3, " ").bold.green, guild.name.padEnd(50, " "), `${(guild.memberCount + " members")}`.dim.white);
 	});
 }
