@@ -2,7 +2,7 @@
 const got = require("got");
 const { override_user_colors, possible_colors } = require("./config.json");
 let mapped_user_colors = {}
-require("console-png").attachTo(console);
+let color_index = 0;
 
 const get_guilds = bot => bot.guilds.array().sort((a, b) => a.position - b.position);
 const get_channels = (bot, djs_state) => djs_state.guild.channels.array()/*.filter(channel => channel.type == "text")*/.sort((a, b) => a.position - b.position);
@@ -16,8 +16,10 @@ function get_message_text(message, bot, djs_state) {
 		} else if(message.author.id == bot.user.id) {
 			mapped_user_colors[message.author.id] = "white";
 		} else {
-			mapped_user_colors[message.author.id] = possible_colors[Math.floor(Math.random() * possible_colors.length)];
+			// mapped_user_colors[message.author.id] = possible_colors[Math.floor(Math.random() * possible_colors.length)];
 			// mapped_user_colors[message.author.id] = "gray";
+			mapped_user_colors[message.author.id] = possible_colors[color_index % possible_colors.length];
+			color_index++
 		}
 		
 		u_color = mapped_user_colors[message.author.id];
