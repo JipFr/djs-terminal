@@ -24,7 +24,7 @@ function get_message_text(message, bot, djs_state) {
 	}
 
 	let highlight = message.mentions.users.array().find(u => u.id == bot.user.id) ? true : false;
-	let text = (highlight ? get_content(message).inverse : get_content(message));
+	let text = (highlight ? get_content(message).bold.underline : get_content(message));
 	let name = message.author.username[u_color];
 	let nick = (message.member || {}).displayName;
 	if(nick && message.author.username !== nick) {

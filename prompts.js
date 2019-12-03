@@ -12,7 +12,7 @@ const prompt_guild = async bot => {
 	} else {
 		relevant = bot.guilds.array().find(guild => guild.name.toLowerCase() == guild_to_pick.toLowerCase());
 	}
-	return relevant ? relevant : await prompt_guild();
+	return relevant ? relevant : await prompt_guild(bot);
 }
 
 const prompt_channel = async (bot, djs_state) => {
@@ -24,7 +24,7 @@ const prompt_channel = async (bot, djs_state) => {
 	} else {
 		relevant = djs_state.guild.channels.array().filter(ch => ch.type == "text").find(ch => ch.name.toLowerCase() == channel_to_pick.toLowerCase());
 	}
-	return relevant ? relevant : await prompt_channel();
+	return relevant ? relevant : await prompt_channel(bot, djs_state);
 }
 
 module.exports = {
