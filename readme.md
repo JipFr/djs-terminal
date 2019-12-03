@@ -7,4 +7,5 @@ The code for this project is **really** bad, I know.
 ```
 "sc" == switch channel, shows channel prompt
 "sg" == switch guild, shows guilds prompt
+"del" == delete, delete last message
 ```
