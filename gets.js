@@ -53,6 +53,10 @@ function get_content(message) {
 	
 	}).join(" ");
 
+	if(message.attachments.size > 0) {
+		content += "Attachments: " + message.attachments.array().map(a => a.url);
+	}
+
 	return content;
 }
 
