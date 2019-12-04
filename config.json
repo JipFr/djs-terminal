@@ -5,5 +5,6 @@
 		"310101504680001536": "underline",
 		"348927463277199380": "magenta"
 	},
-	"possible_colors": ["green", "magenta", "white", "brightRed", "brightGreen", "brightYellow", "brightBlue", "brightMagenta", "brightCyan"]
+	"possible_colors": ["green", "magenta", "white", "brightRed", "brightGreen", "brightYellow", "brightBlue", "brightMagenta", "brightCyan"],
+	"lang": "none"
 }

@@ -7,6 +7,7 @@ const { prompt_guild, prompt_channel } = require("./prompts");
 const { get_channels, get_guilds, get_content, get_message_text } = require("./gets");
 const { ask } = require("./ask");
 const { log_channel, log_guild } = require("./logs");
+const translate = require("./translate");
 
 require("colors");
 require("dotenv").config();
@@ -70,7 +71,7 @@ async function handle_input(msg) {
 
 	} else {
 		// Send message
-		djs_state.channel.send(msg).then(prompt);
+		djs_state.channel.send(translate(msg)).then(prompt);
 	}
 }
 

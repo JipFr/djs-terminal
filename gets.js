@@ -1,6 +1,6 @@
 
-const got = require("got");
-const { override_user_colors, possible_colors } = require("./config.json");
+const { override_user_colors, possible_colors, lang } = require("./config.json");
+const translate = require("./translate");
 let mapped_user_colors = {}
 let color_index = 0;
 
@@ -67,7 +67,12 @@ function get_content(message) {
 		content += "Attachments: ".bold.yellow + urls.join(", ").brightWhite;
 	}
 
-	return content;
+	content = content.split("\n").map(line => {
+		if(line.startsWith("> ")) line = line.bgGray;
+		return line;
+	}).join("\n")
+
+	return translate(content);
 }
 
 module.exports = {
