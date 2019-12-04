@@ -1,8 +1,8 @@
 
 const djs = require("discord.js");
 const bot = new djs.Client();
-const { possible_colors, override_user_colors } = require("./config");
 
+const { possible_colors, override_user_colors } = require("./config");
 const { prompt_guild, prompt_channel } = require("./prompts");
 const { get_channels, get_guilds, get_content, get_message_text } = require("./gets");
 const { ask } = require("./ask");

@@ -1,11 +1,14 @@
 
 const { override_user_colors, possible_colors, lang } = require("./config.json");
 const translate = require("./translate");
+const freq = require("./freq.json");
 let mapped_user_colors = {}
 let color_index = 0;
 
-const get_guilds = bot => bot.guilds.array().sort((a, b) => a.position - b.position);
-const get_channels = (bot, djs_state) => djs_state.guild.channels.array()/*.filter(channel => channel.type == "text")*/.sort((a, b) => a.position - b.position);
+const get_guilds = bot => bot.guilds.array().sort((a, b) => a.position - b.position).sort((a, b) => {
+	return (freq[b.id] || -1) - (freq[a.id] || -1);
+});
+const get_channels = (bot, djs_state) => djs_state.guild.channels.array()/*.filter(channel => channel.type == "text")*/.sort((a, b) => a.position - b.position)
 
 function get_message_text(message, bot, djs_state) {
 	let u_color = mapped_user_colors[message.author.id];

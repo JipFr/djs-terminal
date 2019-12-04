@@ -1,6 +1,8 @@
 const { get_guilds } = require("./gets.js");
 const { ask } = require("./ask");
 const { log_channels, log_guild } = require("./logs");
+const freq = require("./freq.json");
+const fs = require("fs");
 
 const prompt_guild = async bot => {
 	let guild_names = bot.guilds.array().map(guild => guild.name);
@@ -12,7 +14,17 @@ const prompt_guild = async bot => {
 	} else {
 		relevant = bot.guilds.array().find(guild => guild.name.toLowerCase() == guild_to_pick.toLowerCase());
 	}
-	return relevant ? relevant : await prompt_guild(bot);
+	if(relevant) {
+		if(!freq[relevant.id]) {
+			freq[relevant.id] = 0;
+		}
+		freq[relevant.id]++
+		fs.writeFileSync("freq.json", JSON.stringify(freq, null, "\t"));
+		return relevant;
+	} else {
+		return await prompt_guild(bot);
+	}
+	// return relevant ? relevant : await prompt_guild(bot);
 }
 
 const prompt_channel = async (bot, djs_state) => {
