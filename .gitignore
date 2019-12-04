@@ -61,5 +61,6 @@ typings/
 .next
 
 # Others
+logs/
 clear.js
 ._*
