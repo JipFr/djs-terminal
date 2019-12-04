@@ -1,7 +1,7 @@
 
 const { override_user_colors, possible_colors, lang } = require("./config.json");
 const translate = require("./translate");
-const freq = require("./freq.json");
+const freq = require("./logs/freq.json");
 let mapped_user_colors = {}
 let color_index = 0;
 
@@ -10,23 +10,29 @@ const get_guilds = bot => bot.guilds.array().sort((a, b) => a.position - b.posit
 });
 const get_channels = (bot, djs_state) => djs_state.guild.channels.array()/*.filter(channel => channel.type == "text")*/.sort((a, b) => a.position - b.position)
 
-function get_message_text(message, bot, djs_state) {
-	let u_color = mapped_user_colors[message.author.id];
+function get_user_color(user, bot) {
+	let u_color = mapped_user_colors[user.id];
 
 	if(!u_color) {
-		if(override_user_colors[message.author.id]) {
-			mapped_user_colors[message.author.id] = override_user_colors[message.author.id];
-		} else if(message.author.id == bot.user.id) {
-			mapped_user_colors[message.author.id] = "white";
+		if(override_user_colors[user.id]) {
+			mapped_user_colors[user.id] = override_user_colors[user.id];
+		} else if(user.id == bot.user.id) {
+			mapped_user_colors[user.id] = "white";
 		} else {
-			// mapped_user_colors[message.author.id] = possible_colors[Math.floor(Math.random() * possible_colors.length)];
-			// mapped_user_colors[message.author.id] = "gray";
-			mapped_user_colors[message.author.id] = possible_colors[color_index % possible_colors.length];
+			// mapped_user_colors[user.id] = possible_colors[Math.floor(Math.random() * possible_colors.length)];
+			// mapped_user_colors[user.id] = "gray";
+			mapped_user_colors[user.id] = possible_colors[color_index % possible_colors.length];
 			color_index++
 		}
 		
-		u_color = mapped_user_colors[message.author.id];
+		u_color = mapped_user_colors[user.id];
 	}
+	return u_color;
+}
+
+function get_message_text(message, bot, djs_state) {
+	
+	let u_color = get_user_color(message.author, bot);
 
 	let highlight = message.mentions.users.array().find(u => u.id == bot.user.id) ? true : false;
 	let text = (highlight ? get_content(message).bold.underline : get_content(message));
@@ -82,5 +88,6 @@ module.exports = {
 	get_guilds,
 	get_channels,
 	get_content,
-	get_message_text
+	get_message_text,
+	get_user_color
 }

@@ -13,7 +13,7 @@ function log_channel(bot, djs_state) {
 	});
 
 }
-function log_channels(bot, djs_state) {
+function log_channels(bot, djs_state, pings) {
 	mapped_channels = {}
 	if(!djs_state) {
 		djs_state = {}
@@ -34,7 +34,7 @@ function log_channels(bot, djs_state) {
 		console.log(">".bold.yellow, category.name);
 		category.channels.forEach(channel => {
 			mapped_channels[index] = channel;
-			console.log(index.toString().padStart(5, " ").bold.green, channel.name.padEnd(48, " "), channel.id.dim.white);
+			console.log(index.toString().padStart(5, " ").bold[pings[channel.guild.id] && pings[channel.guild.id][channel.id] ? "red" : "green"], channel.name.padEnd(48, " "), channel.id.dim.white);
 			index++
 		});
 	});
