@@ -1,7 +1,7 @@
 const { get_guilds } = require("./gets.js");
 const { ask } = require("./ask");
 const { log_channels, log_guild } = require("./logs");
-const freq = require("./freq.json");
+const freq = require("./logs/freq.json");
 const fs = require("fs");
 
 const prompt_guild = async bot => {
@@ -19,7 +19,7 @@ const prompt_guild = async bot => {
 			freq[relevant.id] = 0;
 		}
 		freq[relevant.id]++
-		fs.writeFileSync("freq.json", JSON.stringify(freq, null, "\t"));
+		fs.writeFileSync("logs/freq.json", JSON.stringify(freq, null, "\t"));
 		return relevant;
 	} else {
 		return await prompt_guild(bot);
