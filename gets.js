@@ -64,13 +64,13 @@ function get_content(message) {
 
 	if(message.attachments.size > 0) {
 		let urls = message.attachments.array().map(a => a.url);
-		content += "Attachments: ".bold.yellow + urls.join(", ").brightWhite;
+		content += " Attachments: ".bold.yellow + urls.join(", ").brightWhite;
 	}
 
 	content = content.split("\n").map(line => {
 		if(line.startsWith("> ")) line = line.bgGray;
-		return line;
-	}).join("\n")
+		return line.trim();
+	}).join("\n");
 
 	return translate(content);
 }
