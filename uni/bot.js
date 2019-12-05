@@ -5,7 +5,7 @@ const ask = require("./ask");
 const commands = require("../commands");
 const get_message_log = require("./get_message_log.js");
 const state = require("./djs_state/state");
-const { get_name, get_channel } = require("./message_gets");
+const { get_name, get_channel, get_content } = require("./message_gets");
 
 bot.login(process.env.TOKEN);
 
@@ -41,11 +41,22 @@ module.exports = bot;
 async function prompt_message() {
 	let input = await ask("");
 	if(input == commands.switch_server) {
-
+		state.guild = await djs.prompt_guild();
+		state.channel = await djs.prompt_channel();
+		prompt_message();
 	} else if(input == commands.switch_channel) {
-
+		state.channel = await djs.prompt_channel();
+		prompt_message();
 	} else if(input == commands.delete_message) {
-
+		state.channel.fetchMessages({ limit: 5 }).then(messages => {
+			let msg = messages.array().find(msg => msg.author.id == bot.user.id);
+			if(msg) {
+				msg.delete(1);
+				console.log(`${"Deleted message:".bold.yellow} ${get_content(msg)}`);
+			} else {
+				console.log("Message not found".bold.yellow)
+			}
+		});
 	} else {
 		send_message(input).then(prompt_message);
 	}

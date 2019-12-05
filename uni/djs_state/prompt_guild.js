@@ -3,14 +3,11 @@ const bot = require("../bot");
 const ask = require("../ask");
 const state = require("./state");
 const get_guilds = require("./get_guilds");
+const log_guilds = require("./log_guilds");
 
 const prompt_guild = async () => {
 	
-	state.mapped_guilds = {}
-	get_guilds().forEach((guild, index) => {
-		state.mapped_guilds[index] = guild;
-		console.log(`${index.toString().padStart(3, " ").bold.green} ${guild.name}`);
-	});
+	log_guilds();
 
 	let answer = await ask("ID ".bold.yellow);
 	let relevant_guild = state.mapped_guilds[answer];
