@@ -77,7 +77,7 @@ function send_message(text) {
 		let allowed_characters = "abcdefghijklmnopqrstuvwxyz-";
 		let hashtag_match = word.match(/#(.\S+)/);
 		if(hashtag_match) {
-			let channel_name = hashtag_match[1].split("").filter(letter => allowed_characters.includes(letter)).join("");
+			let channel_name = hashtag_match[1].split("").filter(letter => allowed_characters.includes(letter.toLowerCase())).join("");
 			let channel = get_channels().all.find(ch => ch.name.trim().toLowerCase() == channel_name.trim().toLowerCase());
 			if(channel) {
 				word = word.replace(`#${channel_name}`, `<#${channel.id}>`);
