@@ -13,13 +13,12 @@ function get_name(input) {
 	color = state.user_colors[author.id];
 	let suffix = "";
 
-	// let nick = (message.member || {}).displayName;
 	let nick = author.nickname || (input.member ? input.member.displayName : undefined);
 	if(nick !== author.username) {
 		suffix = ` (${nick})`
 	}
 	
-	return `${author.username}${suffix}`[[color]];
+	return `${author.username}${suffix}`.padEnd(15, " ")[[color]];
 
 }
 
@@ -57,7 +56,13 @@ function get_content(message) {
 
 		return word;
 	}).join(" ");
-	return message.content;
+
+	if(message.attachments.size > 0) {
+		let urls = message.attachments.array().map(a => a.url);
+		content += " Attachments: ".bold.yellow + urls.join(", ").brightWhite;
+	}
+
+	return content.trim();
 }
 
 module.exports = {

@@ -1,3 +1,4 @@
+console.clear();
 require("dotenv").config();
 require("colors");
 
