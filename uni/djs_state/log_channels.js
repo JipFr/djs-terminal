@@ -9,7 +9,8 @@ module.exports = () => {
 	get_channels().cats.forEach(category => {
 		console.log(`${">".bold.yellow} ${category.name}`);
 		category.channels.forEach(channel => {
-			console.log(`${index.toString().padStart(5, " ").bold.green} ${channel.name}`)
+			let highlight = state.pings[channel.guild.id] && state.pings[channel.guild.id][channel.id];
+			console.log(`${index.toString().padStart(5, " ").bold[highlight ? "red" : "green"]} ${channel.name}`)
 			state.mapped_channels[index] = channel;
 			index++
 		});

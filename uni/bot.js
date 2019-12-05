@@ -14,6 +14,7 @@ bot.login(process.env.TOKEN);
 bot.on("ready", async () => {
 	djs = require("./djs_state");
 	console.log(`${">".bold.yellow} Bot is ready`);
+	state.pings = {}
 	djs.state.guild = await djs.prompt_guild();
 	djs.state.channel = await djs.prompt_channel();
 	log_channel().then(prompt_message); 
@@ -22,14 +23,21 @@ bot.on("ready", async () => {
 bot.on("message", message => {
 	if(state && state.guild && state.channel && message.guild.id == state.guild.id && message.channel.id == state.channel.id) {
 		console.log(get_message_log(message));
-	} else {
-		// Not currently selected channel
-		message.mentions.members.array().forEach(member => {
-			if(member.id == bot.user.id) {
+	}
+	message.mentions.members.array().forEach(member => {
+		if(member.id == bot.user.id) {
+			if(message.channel.id !== (state.channel || {}).id) {
 				console.log(`${"—".repeat(3)} You were mentioned in ${message.guild.name.bold.yellow}'s ${get_channel(message)} by ${get_name(message)} ${"—".repeat(3)}`)
 			}
-		});
-	}
+			// Update ping object
+			if(!state.pings[message.guild.id]) {
+				state.pings[message.guild.id] = {}
+			}
+			if(!state.pings[message.guild.id][message.channel.id]) {
+				state.pings[message.guild.id][message.channel.id] = true;
+			}
+		}
+	});	
 });
 
 module.exports = bot;

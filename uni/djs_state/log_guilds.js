@@ -10,6 +10,7 @@ module.exports = () => {
 		state.mapped_guilds[index] = guild;
 	});
 	Object.entries(state.mapped_guilds).reverse().forEach(entry => {
-		console.log(`${entry[0].toString().padStart(3, " ").bold.green} ${entry[1].name}`);
+		let hightlight = state.pings[entry[1].id] && Object.values(state.pings[entry[1].id]).find(bool => bool);
+		console.log(`${entry[0].toString().padStart(3, " ").bold[hightlight ? "red" : "green"]} ${entry[1].name}`);
 	});
 }
