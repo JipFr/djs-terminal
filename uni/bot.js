@@ -63,6 +63,7 @@ async function prompt_message() {
 }
 
 function send_message(text) {
+	if(!text || text.length == 0) return;
 	return new Promise(resolve => {
 		state.channel.send(text).then(resolve);
 	});
