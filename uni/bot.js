@@ -16,7 +16,7 @@ bot.on("ready", async () => {
 	console.log(`${">".bold.yellow} Bot is ready`);
 	djs.state.guild = await djs.prompt_guild();
 	djs.state.channel = await djs.prompt_channel();
-	log_channel().then(prompt_message);
+	log_channel().then(prompt_message); 
 });
 
 bot.on("message", message => {
