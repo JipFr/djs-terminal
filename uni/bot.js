@@ -21,7 +21,7 @@ bot.on("ready", async () => {
 });
 
 bot.on("message", message => {
-	if(state && state.guild && state.channel && message.guild.id == state.guild.id && message.channel.id == state.channel.id) {
+	if(state && state.show_messages && state.guild && state.channel && message.guild.id == state.guild.id && message.channel.id == state.channel.id) {
 		console.log(get_message_log(message));
 	}
 	message.mentions.members.array().forEach(member => {

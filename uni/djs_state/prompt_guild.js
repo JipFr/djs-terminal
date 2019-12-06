@@ -6,14 +6,20 @@ const get_guilds = require("./get_guilds");
 const log_guilds = require("./log_guilds");
 
 const prompt_guild = async () => {
+
+	state.show_messages = false;
 	
 	log_guilds();
 
 	let answer = await ask("ID ".bold.yellow);
 	let relevant_guild = state.mapped_guilds[answer];
 	if(!relevant_guild) relevant_guild = get_guilds().find(guild => guild.name.toLowerCase() == answer.toLowerCase());
-	
-	return relevant_guild ? relevant_guild : await prompt_guild();
+	if(relevant_guild) {
+		state.show_messages = true;
+		return relevant_guild;
+	}
+	return await prompt_guild();
+
 }
 
 module.exports = prompt_guild;
