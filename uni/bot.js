@@ -12,6 +12,7 @@ const { get_name, get_channel, get_content } = require("./message_gets");
 bot.login(process.env.TOKEN);
 
 bot.on("ready", async () => {
+	console.log(123);
 	djs = require("./djs_state");
 	console.log(`${">".bold.yellow} Bot is ready`);
 	state.pings = {}

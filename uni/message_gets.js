@@ -17,6 +17,10 @@ function get_name(input) {
 	if(nick !== author.username) {
 		suffix = ` (${nick})`
 	}
+	if(author.bot) {
+		suffix += ` ${"[BOT]".brightWhite.bgCyan}`;
+		// " [BOT]" where only bot is colored
+	}
 	
 	return `${author.username}${suffix}`.padEnd(15, " ")[[color]];
 
