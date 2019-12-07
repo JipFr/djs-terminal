@@ -8,11 +8,16 @@ const state = require("./djs_state/state");
 const log_channel = require("./djs_state/log_channel");
 const get_channels = require("./djs_state/get_channels");
 const { get_name, get_channel, get_content } = require("./message_gets");
+state.bot_ready = false;
 
 bot.login(process.env.TOKEN);
 
+setTimeout(() => {
+	if(!state.bot_ready) console.log("Something is taking too long...".bold.red);
+}, 10e3);
+
 bot.on("ready", async () => {
-	console.log(123);
+	state.bot_ready = true;
 	djs = require("./djs_state");
 	console.log(`${">".bold.yellow} Bot is ready`);
 	state.pings = {}
