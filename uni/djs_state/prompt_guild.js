@@ -1,4 +1,6 @@
 
+const fs = require("fs");
+
 const bot = require("../bot");
 const ask = require("../ask");
 const state = require("./state");

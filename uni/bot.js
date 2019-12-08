@@ -12,7 +12,7 @@ state.bot_ready = false;
 
 bot.login(process.env.TOKEN);
 
-setTimeout(() => {
+setInterval(() => {
 	if(!state.bot_ready) console.log("Something is taking too long...".bold.red);
 }, 10e3);
 
