@@ -61,6 +61,7 @@ typings/
 .next
 
 # Others
+logs/
 clear.js
 ._*
 guild_freq.json
