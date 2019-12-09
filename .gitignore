@@ -63,4 +63,5 @@ typings/
 # Others
 clear.js
 ._*
-guild_freq.json
+/guild_freq.json
+*.json

@@ -24,7 +24,7 @@ const prompt_guild = async () => {
 		}
 
 		freq[relevant_guild.id]++;
-		fs.writeFileSync("../../guild_freq.json", JSON.stringify(freq));
+		fs.writeFileSync("guild_freq.json", JSON.stringify(freq));
 
 		state.show_messages = true;
 		return relevant_guild;
