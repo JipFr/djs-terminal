@@ -14,7 +14,7 @@ module.exports = () => {
 				console.log(`${index.toString().padStart(5, " ").bold[highlight ? "red" : "green"]} ${channel.name}`)
 				state.mapped_channels[index] = channel;
 				index++
-			} else {
+			} else if(channel.type == "voice") {
 				console.log(`${"🔊".padStart(5, " ").bold.green} ${channel.name}`)
 			}
 		});
