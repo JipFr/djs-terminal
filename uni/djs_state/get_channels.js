@@ -12,7 +12,7 @@ module.exports = () => {
 			}
 		});
 
-	all_channels.filter(ch => ch.type == "text").forEach(channel => {
+	all_channels/*.filter(ch => ch.type == "text")*/.forEach(channel => {
 		let cat_id = channel.parentID;
 		let cat = mapped_cats.find(cat => cat.id == cat_id);
 		if(cat) {
@@ -22,6 +22,7 @@ module.exports = () => {
 
 	return {
 		all: all_channels,
+		text: all_channels.filter(ch => ch.type == "text"),
 		cats: mapped_cats
 	}
 

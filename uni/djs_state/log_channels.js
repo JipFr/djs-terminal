@@ -9,11 +9,14 @@ module.exports = () => {
 	get_channels().cats.forEach(category => {
 		console.log(`${">".bold.yellow} ${category.name}`);
 		category.channels.forEach(channel => {
-			let highlight = state.pings[channel.guild.id] && state.pings[channel.guild.id][channel.id];
-			console.log(`${index.toString().padStart(5, " ").bold[highlight ? "red" : "green"]} ${channel.name}`)
-			state.mapped_channels[index] = channel;
-			index++
+			if(channel.type == "text") {
+				let highlight = state.pings[channel.guild.id] && state.pings[channel.guild.id][channel.id];
+				console.log(`${index.toString().padStart(5, " ").bold[highlight ? "red" : "green"]} ${channel.name}`)
+				state.mapped_channels[index] = channel;
+				index++
+			} else {
+				console.log(`${"🔊".padStart(5, " ").bold.green} ${channel.name}`)
+			}
 		});
-		// console.log(`${index.toString().padStart(3, " ").bold.green} ${channel.name}`);
 	});
 }
