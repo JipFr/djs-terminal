@@ -30,6 +30,7 @@ bot.on("message", message => {
 	if(state && state.show_messages && state.guild && state.channel && message.guild && message.guild.id == state.guild.id && message.channel.id == state.channel.id) {
 		console.log(get_message_log(message));
 	}
+	if(!message.mentions.member) return;
 	message.mentions.members.array().forEach(member => {
 		if(member.id == bot.user.id) {
 			if(message.channel.id !== (state.channel || {}).id) {
