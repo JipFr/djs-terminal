@@ -28,7 +28,12 @@ function get_name(input) {
 
 function get_time(message) {
 	let d = new Date(message.createdAt);
-	return d.toJSON().split(/T|\./)[1];
+
+	let hours = d.getHours().toString().padStart(2, 0);
+	let minutes = d.getMinutes().toString().padStart(2, 0);
+	let seconds = d.getSeconds().toString().padStart(2, 0);
+	return `${hours}:${minutes}:${seconds}`;
+	// return d.toJSON().split(/T|\./)[1];
 }
 
 function get_channel(message) {
