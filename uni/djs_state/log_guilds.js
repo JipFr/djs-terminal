@@ -11,6 +11,6 @@ module.exports = () => {
 	});
 	Object.entries(state.mapped_guilds).reverse().forEach(entry => {
 		let hightlight = state.pings[entry[1].id] && Object.values(state.pings[entry[1].id]).find(bool => bool);
-		console.log(`${entry[0].toString().padStart(3, " ").bold[hightlight ? "red" : "green"]} ${entry[1].name}`);
+		console.log(`${entry[0].toString().padStart(3, " ").bold[hightlight ? "red" : "green"]} ${entry[1].name.padEnd(50, " ")} ${`${entry[1].memberCount} members`.gray}`);
 	});
 }
