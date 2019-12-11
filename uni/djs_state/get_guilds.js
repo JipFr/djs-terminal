@@ -1,4 +1,7 @@
 const bot = require("../bot");
+const fs = require("fs");
+
+if(!fs.existsSync("../../guild_freq.json")) fs.writeFileSync("guild_freq.json", "{}")
 const freq = require("../../guild_freq.json");
 
 module.exports = () => {
