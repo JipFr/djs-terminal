@@ -1,21 +1,25 @@
 {
-  "name": "discord-cmd",
+  "name": "djs-terminal",
   "version": "1.0.0",
-  "description": "",
+  "description": "The code for this project is **not as** bad now.",
   "main": "index.js",
   "scripts": {
-    "run": "node ."
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JipFr/djs-terminal.git"
+  },
+  "author": "Jip Fr",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JipFr/djs-terminal/issues"
+  },
+  "homepage": "https://github.com/JipFr/djs-terminal#readme",
   "dependencies": {
     "colors": "^1.4.0",
-    "console-png": "^1.2.1",
     "discord.js": "^11.5.1",
     "dotenv": "^8.2.0",
-    "got": "^10.0.1",
-    "inquirer": "^7.0.0",
-    "serverline": "^1.4.2",
-    "terminal-image": "^0.2.0"
+    "serverline": "^1.4.2"
   }
 }

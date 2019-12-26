@@ -1,7 +1,7 @@
 
 # DJS-terminal
 
-The code for this project is **really** bad, I know.
+The code for this project is **not as** bad, I know.
 
 ## Shortcuts 
 ```
