@@ -6,12 +6,12 @@ const ask = require("../ask");
 const state = require("./state");
 const get_guilds = require("./get_guilds");
 const log_guilds = require("./log_guilds");
-const freq = require("../../guild_freq");
+const freq = require("../../guild_freq.json");
 
 const prompt_guild = async () => {
 
 	state.show_messages = false;
-	
+
 	log_guilds();
 
 	let answer = await ask("ID ".bold.yellow);
