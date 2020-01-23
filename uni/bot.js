@@ -23,13 +23,18 @@ bot.on("ready", async () => {
 	state.pings = {}
 	djs.state.guild = await djs.prompt_guild();
 	djs.state.channel = await djs.prompt_channel();
-	log_channel().then(prompt_message); 
+	log_channel().then(prompt_message);
 });
 
 bot.on("message", message => {
 	if(state && state.show_messages && state.guild && state.channel && message.guild && message.guild.id == state.guild.id && message.channel.id == state.channel.id) {
 		console.log(get_message_log(message));
 	}
+
+	if(message.author.id === bot.user.id && message.content.toLowerCase(// TODO) === "this") {
+		// TODO
+	}
+
 	if(!message.mentions.members) return;
 	message.mentions.members.array().forEach(member => {
 		if(member.id == bot.user.id) {
